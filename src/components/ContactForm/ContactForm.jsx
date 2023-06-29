@@ -70,7 +70,7 @@ export const ContactForm = () => {
       }}
       onSubmit={(values, { resetForm }) => {
         onAddContact({ ...values });
-
+        console.log(values);
         resetForm();
       }}
       validationSchema={schema}

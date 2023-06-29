@@ -22,7 +22,6 @@ export const ContactList = () => {
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
-  // console.log(contacts);
 
   const filterContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
