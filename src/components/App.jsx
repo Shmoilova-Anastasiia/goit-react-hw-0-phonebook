@@ -1,7 +1,7 @@
 import { useEffect, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Layout } from './Layout';
+import { Layout } from './Layout/Layout';
 import { refreshUser } from 'redux/auth/authOperations';
 import { selectIsRefreshing } from 'redux/auth/authSelector';
 import { PrivateRoute } from './privateRoute';
