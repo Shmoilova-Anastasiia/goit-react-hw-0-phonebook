@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 
 import { Btn, Item } from './ContactList.styled';
-import { deleteContactsThunk } from 'redux/thunks';
+import { deleteContactsThunk } from 'redux/contact/contactOperations';
 import { TiDelete } from 'react-icons/ti';
 
-export const ContactItem = ({ name, phone, id }) => {
+export const ContactItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
 
   const onDelete = contactId => {
@@ -15,7 +15,7 @@ export const ContactItem = ({ name, phone, id }) => {
     <>
       <Item>
         <span>{name}:</span>
-        <span>{phone}</span>
+        <span>{number}</span>
         <Btn type="button" onClick={() => onDelete(id)}>
           <TiDelete size="20" />
         </Btn>

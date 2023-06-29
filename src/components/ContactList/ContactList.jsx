@@ -9,7 +9,7 @@ import {
 
 import { selectFilter } from 'redux/filter/filterSelector';
 import { ContactItem } from './ContactItem';
-import { getContactsThunk } from 'redux/thunks';
+import { getContactsThunk } from 'redux/contact/contactOperations';
 
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);
@@ -30,17 +30,16 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && contacts?.length === 0}
       {error && !isLoading && <div>Ooops, error...</div>}
       {!filterContacts?.length && !error && !isLoading && (
         <div>Contacts not found</div>
       )}
       {!error && !isLoading && filterContacts?.length > 0 && (
         <List>
-          {filterContacts.map(({ name, phone, id }) => {
+          {filterContacts.map(({ name, number, id }) => {
             return (
               <Fragment key={id}>
-                <ContactItem name={name} phone={phone} id={id} />
+                <ContactItem name={name} number={number} id={id} />
               </Fragment>
             );
           })}

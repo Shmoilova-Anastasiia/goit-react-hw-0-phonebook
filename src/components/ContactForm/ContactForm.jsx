@@ -17,7 +17,7 @@ import {
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addContactsThunk } from 'redux/thunks';
+import { addContactsThunk } from 'redux/contact/contactOperations';
 import { toast } from 'react-toastify';
 import { selectContacts } from 'redux/contact/contactSelector';
 
@@ -40,7 +40,7 @@ const schema = yup.object().shape({
       'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d`Artagnan'
     )
     .required(),
-  phone: yup.string().required(),
+  number: yup.string().required(),
 });
 
 export const ContactForm = () => {
@@ -55,7 +55,7 @@ export const ContactForm = () => {
       toast.error(`${data.name}: is already in contacts`, toastifyOptions);
       return;
     }
-    const findNumber = contacts.find(({ phone }) => phone === data.phone);
+    const findNumber = contacts.find(({ number }) => number === data.number);
     if (findNumber) {
       toast.error(`This phone number is already in use.`, toastifyOptions);
       return;
@@ -66,7 +66,7 @@ export const ContactForm = () => {
     <Formik
       initialValues={{
         name: '',
-        phone: '',
+        number: '',
       }}
       onSubmit={(values, { resetForm }) => {
         onAddContact({ ...values });
@@ -83,8 +83,8 @@ export const ContactForm = () => {
         </FormField>
         <FormField>
           <LabelWrapper>Number</LabelWrapper>
-          <FieldFormik type="tel" name="phone" required />
-          <ErrorMessage name="phone" component="span" />
+          <FieldFormik type="tel" name="number" required />
+          <ErrorMessage name="number" component="span" />
         </FormField>
         <StyledButton type="submit">
           <span>
